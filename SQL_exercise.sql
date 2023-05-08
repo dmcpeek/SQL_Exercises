@@ -9,12 +9,12 @@ WHERE price = 1400;
 -- find all products that cost $11.99 or $13.99
 SELECT * 
 FROM products 
-WHERE price BETWEEN 11.99 AND 13.99;
+WHERE price = 11.99 OR price = 13.99;
 
 -- find all products that do NOT cost 11.99 - using NOT
 SELECT * 
 FROM products 
-WHERE price NOT BETWEEN 11.99 AND 13.99;
+WHERE NOT price = 11.99; -- This was new to me!
 
 -- find all products and sort them by price from greatest to least
 SELECT * 
