@@ -44,7 +44,8 @@ WHERE cat.Name = 'Appliances' OR cat.Name = 'Games';
  FROM reviews
  JOIN products AS prod
  ON prod.ProductID = reviews.ProductID
- WHERE prod.name = "Visio TV" AND reviews.Rating = 1;
+ WHERE prod.name = "Visio TV" AND reviews.Rating = 1
+ HAVING "Snarky Comment" = (SELECT (SUM(reviews.Comment)) AS MOST FROM reviews GROUP BY reviews.rating ORDER BY MOST DESC LIMIT 1);
 
 -- ------------------------------------------ Extra - May be difficult
 /* Your goal is to write a query that serves as an employee sales report.
@@ -54,7 +55,7 @@ This query should return:
 -  the name of each product
 -  and how many of that product they sold */
 SELECT emp.EmployeeID, CONCAT(emp.FirstName, " ", emp.LastName) AS Name, 
-	   sales.quantity AS "Quantity Sold", products.name "Product Name"
+	   products.name "Product Name", sales.quantity AS "Quantity Sold"
 FROM employees AS emp
 JOIN sales
 ON emp.EmployeeID = sales.EmployeeID
